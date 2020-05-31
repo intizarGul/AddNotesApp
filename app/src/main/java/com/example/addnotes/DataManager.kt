@@ -6,31 +6,37 @@ class DataManager {
     //HashMap accepts two type parameters
     //the first type will be used for lookups we will lookup our Changeinfo ID which is string
     // the second parameter type is a type that will be stored, which for our changes it's ChangeInfo
-    val items = HashMap<String,ChangeInfo>()
-
+    
+    val courses = HashMap<String, CourseInfo>()
+    
     //We need another property to hold our collection of changes we use array for this purpose.
-    val changes = ArrayList<ChangeInfo>()
+    val notes = ArrayList<CourseInfo>()
+    
     init {
-    // this code will run whenever and instance of the Datamanager is created
+        // this code will run whenever and instance of the Datamanager is created
         intializeChanges()
         // initialise block accepts no parameter because there no way of running them explicitly
         // they are run automatically
     }
-
+    
+    
     // We need to initialise our Change Info class we do this by creating a function with no parameters
-    // We make this method private to the DataManager class so it's not available from anywhere else
-    private fun intializeChanges(){
+// We make this method private to the DataManager class so it's not available from anywhere else
+    private fun intializeChanges() {
+        
         //for the HashMap lookup we do that by using it set method we pass the Id as first parameter
         // and the change var as the second parameter
-        var change = ChangeInfo("android_intents","Android Programming with Intents")
-        items.set(change.changeId,change)
+        var course = CourseInfo("android_intents", "Android Programming with Intents")
+        courses.set(course.courseId,course)
+        
         //Adding a few more items ot the list
         // using the Name specific Parameters the order of parameters in which they are used doesn't matter
-        change = ChangeInfo(title = "Java Fundmentals: The Java Language",changeId = "java_lang")
+        course = CourseInfo(title = "Java Fundamentals: The Java Language", courseId = "java_lang")
+        
         //using positional parameters
-        change = ChangeInfo("report_c365","Notts Waste Audit Dashboard report")
-        change = ChangeInfo("report_c365","Thirteen Group FRA Activity Dashboard")
-        change = ChangeInfo("android_async","Android Async Programming and Services")
+        course = CourseInfo("report_c365","Notts Waste Audit Dashboard report")
+        course = CourseInfo("report_c365", "Thirteen Group FRA Activity Dashboard")
+        course = CourseInfo("android_async", "Android Async Programming and Services")
         // the function above initializes the changeinfo class with five items
     }
 }

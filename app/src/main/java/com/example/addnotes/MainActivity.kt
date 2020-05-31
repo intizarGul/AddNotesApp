@@ -1,12 +1,11 @@
 package com.example.addnotes
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.fragment_first.*
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,23 +13,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
-
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            //double the value of the text box when the action button is clicked
-            // First we need the get the original value textview_first is the ID of the text box
-            // we then convert the value to string and convert back to int to display the double
-            val originalValue = textview_first.text.toString().toInt()
-
-            //we need the new value to be doubled we * the original value by 2
-            val newValue = originalValue * 2
-
-            // we need to display the new value inside the textview
-            textview_first.text = newValue.toString()
-            // we will use the Snackbar functionality to display the old and new value
-            Snackbar.make(view, "Value $originalValue changed to $newValue",
-                Snackbar.LENGTH_LONG)
-                .show()
-        }
+        
+        //we are now using the adaptor class to populate the spinner with the information
+        // from the DataManager Class
+        
+        //First we need an instance of the Datamanager Class
+        val dm = DataManager()
+        
+        val adapterCourses = ArrayAdapter(this,
+            android.R.layout.simple_spinner_item,
+            dm.courses.values.toList())
+        adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        
+        spinnerCourse.adapter = adapterCourses
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
