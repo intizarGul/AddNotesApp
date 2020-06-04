@@ -1,65 +1,60 @@
 package com.example.addnotes
 
 object DataManager {
-    //We need to add properties to class
-    //HashMap is a generic type they allow us to specify a specific type withing the type
-    //HashMap accepts two type parameters
-    //the first type will be used for lookups we will lookup our Changeinfo ID which is string
-    // the second parameter type is a type that will be stored, which for our changes it's ChangeInfo
-    
     val courses = HashMap<String, CourseInfo>()
-    
-    //We need another property to hold our collection of changes we use array for this purpose.
     val notes = ArrayList<NoteInfo>()
     
     init {
-        // this code will run whenever and instance of the Datamanager is created
-        intializeCourses()
-        // initialise block accepts no parameter because there no way of running them explicitly
-        // they are run automatically
+        initializeCourses()
         initializeNotes()
-        
     }
     
-    
-    // We need to initialise our Change Info class we do this by creating a function with no parameters
-// We make this method private to the DataManager class so it's not available from anywhere else
-    private fun intializeCourses() {
-        
-        //for the HashMap lookup we do that by using it set method we pass the Id as first parameter
-        // and the change var as the second parameter
+    private fun initializeCourses() {
         var course = CourseInfo("android_intents", "Android Programming with Intents")
-        courses.set(course.courseId,course)
-        //Adding a few more items ot the list
-        // using the Name specific Parameters the order of parameters in which they are used doesn't matter
-        course = CourseInfo(title = "Java Fundamentals: The Java Language", courseId = "java_lang")
-        courses.set(course.courseId,course)
-        //using positional parameters
-        course = CourseInfo("Notts_report_c365","Notts Waste Audit Dashboard report")
-        courses.set(course.courseId,course)
-        course = CourseInfo("report_c365", "Thirteen Group FRA Activity Dashboard")
-        courses.set(course.courseId,course)
-        course = CourseInfo("android_async", "Android Async Programming and Services")
-        // the function above initializes the changeinfo class with five items
-        courses.set(course.courseId,course)
-    }
-    
-    private  fun initializeNotes () {
-        var notes = NoteInfo("Android Programming with Intents","this is a text","this is a text")
-        notes = NoteInfo("Notts_report_c365","Notts Waste Audit Dashboard report","a text")
+        courses.set(course.courseId, course)
         
-       
+        course = CourseInfo(courseId = "android_async", title = "Android Async Programming and Services")
+        courses.set(course.courseId, course)
+        
+        course = CourseInfo(title = "Java Fundamentals: The Java Language", courseId = "java_lang")
+        courses.set(course.courseId, course)
+        
+        course = CourseInfo("java_core", "Java Fundamentals: The Core Platform")
+        courses.set(course.courseId, course)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    private fun initializeNotes() {
+        
+        var course = courses["android_intents"]!!
+        var note = NoteInfo(course, "Dynamic intent resolution",
+            "Wow, intents allow components to be resolved at runtime")
+        notes.add(note)
+        note = NoteInfo(course, "Delegating intents",
+            "PendingIntents are powerful; they delegate much more than just a component invocation")
+        notes.add(note)
+        
+        course = courses["android_async"]!!
+        note = NoteInfo(course, "Service default threads",
+            "Did you know that by default an Android Service will tie up the UI thread?")
+        notes.add(note)
+        note = NoteInfo(course, "Long running operations",
+            "Foreground Services can be tied to a notification icon")
+        notes.add(note)
+        
+        course = courses["java_lang"]!!
+        note = NoteInfo(course, "Parameters",
+            "Leverage variable-length parameter lists")
+        notes.add(note)
+        note = NoteInfo(course, "Anonymous classes",
+            "Anonymous classes simplify implementing one-use types")
+        notes.add(note)
+        
+        course = courses["java_core"]!!
+        note = NoteInfo(course, "Compiler options",
+            "The -jar option isn't compatible with with the -cp option")
+        notes.add(note)
+        note = NoteInfo(course, "Serialization",
+            "Remember to include SerialVersionUID to assure version compatibility")
+        notes.add(note)
+    }
 }

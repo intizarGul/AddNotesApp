@@ -18,35 +18,28 @@ class MainActivity : AppCompatActivity() {
         
         //we are now using the adaptor class to populate the spinner with the information
         // from the DataManager Class
-        
-        //Create an instance of the adapter
-        val adapterCourses = ArrayAdapter(this, // this activity as the context parameter
-            android.R.layout.simple_spinner_item, // simple_spinner_item as the layout of the spinner
-            DataManager.courses.values.toList()) //convert the courses values to a list
+    
+        val adapterCourses = ArrayAdapter<CourseInfo>(this,
+            android.R.layout.simple_spinner_item,
+            DataManager.courses.values.toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        //Set another another layout to view the dropdown options
-        
-        //Connect the spinner dropdown to the adapterCourses variable
+    
         spinnerCourse.adapter = adapterCourses
-        //find the position of the note with the intent
-        // if the position is set get the value if not return -1 position
+    
         notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
-        
-        // display the note if position is set
-        if (notePosition != POSITION_NOT_SET)
+    
+        if(notePosition != POSITION_NOT_SET)
             displayNote()
     }
     
     private fun displayNote() {
-        //find the note with it's position
+        // this function handles displaying notes
         val note = DataManager.notes[notePosition]
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
         
-        //We need to get he course information from the Spinner in DataManager
         val coursePosition = DataManager.courses.values.indexOf<Any>(note.course)
         spinnerCourse.setSelection(coursePosition)
-        
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -61,7 +54,31 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_Next -> {
+                moveNext()
+                true
+            }
+            R.id.action_Previous ->{
+                moveBack()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    
+    private fun moveBack() {
+        //move from one note to another move between items
+        // to move to previous item we will decrease the noteposition that we worked out above
+        --notePosition
+        // now call the displayNote function
+        displayNote()
+    }
+    
+    private fun moveNext() {
+        //move from one note to another move between items
+        // to move to next item we will increase the noteposition that we worked out above
+        ++notePosition
+        // now call the displayNote function
+        displayNote()
     }
 }
