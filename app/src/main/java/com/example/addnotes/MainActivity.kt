@@ -1,11 +1,14 @@
 package com.example.addnotes
 
+import android.graphics.PointF.length
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.content_main.*
+import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class MainActivity : AppCompatActivity() {
@@ -18,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         
         //we are now using the adaptor class to populate the spinner with the information
         // from the DataManager Class
-    
         val adapterCourses = ArrayAdapter<CourseInfo>(this,
             android.R.layout.simple_spinner_item,
             DataManager.courses.values.toList())
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         spinnerCourse.adapter = adapterCourses
     
         notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
-    
+        
         if(notePosition != POSITION_NOT_SET)
             displayNote()
     }
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
         
-        val coursePosition = DataManager.courses.values.indexOf<Any>(note.course)
+        val coursePosition = DataManager.courses.values.collectionsIndexOf<Any>(note.course)
         spinnerCourse.setSelection(coursePosition)
     }
     
@@ -69,16 +71,67 @@ class MainActivity : AppCompatActivity() {
     private fun moveBack() {
         //move from one note to another move between items
         // to move to previous item we will decrease the noteposition that we worked out above
-        --notePosition
+        notePosition -= 1
         // now call the displayNote function
         displayNote()
+        // the way we schedule a call to onPrepareOptionsMenu() method
+        // is by calling the invalidateOptionsMenu()
+        invalidateOptionsMenu()
     }
     
     private fun moveNext() {
         //move from one note to another move between items
         // to move to next item we will increase the noteposition that we worked out above
+        
         ++notePosition
         // now call the displayNote function
         displayNote()
+        // the way we schedule a call to onPrepareOptionsMenu() method
+        // is by calling the invalidateOptionsMenu()
+        invalidateOptionsMenu()
+        
+    }
+    
+    //override icon when users gets to the last item
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        // We are checking when we get to the last index of the collection list then change the icon
+        if(notePosition >= DataManager.notes.lastIndex){
+            val menuItem = menu?.findItem(R.id.action_Next)
+            if(menuItem != null)
+                menuItem.icon = getDrawable(R.drawable.ic_baseline_block_24)
+                menuItem?.isEnabled = false
+        } else {
+            //The Button is disabled when the list gets to 0
+            if (notePosition == 0) {
+                val menuItem = menu?.findItem(R.id.action_Previous)
+                if (menuItem != null)
+                    menuItem.icon = getDrawable(R.drawable.ic_baseline_block_24)
+                menuItem?.isEnabled = false
+            }
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+    
+    override fun onPause() {
+        //save the note when the users leaves the activity override the onPause Method()
+        // this will automatically happen when the activity is moved from the foreground
+        super.onPause()
+        saveNote()
+        
+    }
+    
+    private fun saveNote() {
+       //to save the note we need to get the position of the selected note
+        val note = DataManager.notes[notePosition]
+        //set the note title get the id for the note title view and set the text property
+        //convert toString
+        note.title = textNoteTitle.text.toString()
+        //set the note text get the id for the note text view and set the text property
+        //convert toString
+        note.text = textNoteText.text.toString()
+        //set the course get the id for the course and set the selectedItem property
+        // when we select the course we have the reference to the selected course but not the courseInfo reference
+        //cast the course as CourseInfo to get the courseInfo reference
+        note.course = spinnerCourse.selectedItem as CourseInfo
     }
 }
