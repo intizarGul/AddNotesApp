@@ -1,8 +1,6 @@
 package com.example.addnotes
 
-import android.graphics.PointF.length
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -27,20 +25,41 @@ class MainActivity : AppCompatActivity() {
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     
         spinnerCourse.adapter = adapterCourses
-    
-        notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
         
+        //We first check savedInstanceState if it's non-null then we go ahead and get the
+        // saved note position from the instance state but if savedInstanceState is null
+        // that would result in a null value and so then the Elvis operator will then cause us
+        // to get the note position from the extra
+        notePosition = savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET)?:
+            intent.getIntExtra(NOTE_POSITION, POSITION_NOT_SET)
+        
+        //The statement below will tell us if we have a note if yes then we display the Note
         if(notePosition != POSITION_NOT_SET)
             displayNote()
+        //if then we create a new Note
+        else{
+            //create a new instance of the NoteInfo class and add it to DataManager notes collection
+            // and the set the position of the MainActivity to last index
+            DataManager.notes.add(NoteInfo())
+            notePosition = DataManager.notes.lastIndex
+        }
+        
+    }
+    
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        //saving the instance of the MainActivity  by getting the noteposition
+        //because the noteposition is an int we will call the putInt property of the outStateParameter
+        outState.putInt(NOTE_POSITION,notePosition)
     }
     
     private fun displayNote() {
-        // this function handles displaying notes
+        // this function handles displaying notes state when
         val note = DataManager.notes[notePosition]
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
         
-        val coursePosition = DataManager.courses.values.collectionsIndexOf<Any>(note.course)
+        val coursePosition = DataManager.courses.values.collectionsIndexOf(note.course)
         spinnerCourse.setSelection(coursePosition)
     }
     

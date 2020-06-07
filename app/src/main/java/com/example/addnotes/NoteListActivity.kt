@@ -23,9 +23,20 @@ class NoteListActivity : AppCompatActivity() {
 		NoteList.setOnItemClickListener { parent, view, postion, id ->
 			val activityIntent = Intent(this,MainActivity::class.java)
 			
-			activityIntent.putExtra(EXTRA_NOTE_POSITION,postion)
+			activityIntent.putExtra(NOTE_POSITION,postion)
 			startActivity(activityIntent)
 		
 		}
+	}
+	
+	//When a new note is added to the arrayAdapter the size of the array will change this will result in app crashing
+	//the new note is not showing yet to show the note we need to override the onResume method
+	//this means when the NoteListActivity is in foreground show the new items added
+	override fun onResume() {
+		super.onResume()
+		//get a reference to list of note through the property
+		// the type of the array adapter is a base class we need to cast this as an arrayAdaptor
+		(NoteList.adapter as ArrayAdapter<NoteInfo>).notifyDataSetChanged()
+		//we need to call the notifyDataSetChanged method to add the item
 	}
 }
