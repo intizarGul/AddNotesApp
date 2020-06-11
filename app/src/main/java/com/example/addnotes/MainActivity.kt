@@ -1,6 +1,7 @@
 package com.example.addnotes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +13,8 @@ import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class MainActivity : AppCompatActivity() {
+    //creating a property to log entries
+    private  val tag = "MainActivity"
     //Property to find the position of Note
     private var notePosition = POSITION_NOT_SET
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +45,8 @@ class MainActivity : AppCompatActivity() {
         else{
             createNewNote()
         }
-        
+        // calling a debug log on entry when the on create method is ran
+        Log.d(tag,"onCreate")
     }
     
     private fun createNewNote() {
@@ -60,13 +64,22 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun displayNote() {
+        if (notePosition > DataManager.notes.lastIndex){
+            showToast("Note not found",Toast.LENGTH_SHORT)
+            //error log
+            Log.e(tag,"Invalide note position $notePosition, max valid position ${DataManager.notes.lastIndex}")
+        }
+        
         // this function handles displaying notes state when
+        // log noteposition information
+        Log.i(tag,"Displaying note for position $notePosition")
         val note = DataManager.notes[notePosition]
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
         
         val coursePosition = DataManager.courses.values.collectionsIndexOf(note.course)
         spinnerCourse.setSelection(coursePosition)
+        
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -144,7 +157,7 @@ class MainActivity : AppCompatActivity() {
         // this will automatically happen when the activity is moved from the foreground
         super.onPause()
         saveNote()
-        
+        Log.d(tag,"onPause")
     }
     
     private fun saveNote() {
