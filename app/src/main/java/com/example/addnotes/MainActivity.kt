@@ -1,20 +1,13 @@
 package com.example.addnotes
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
-import android.os.Message
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.content_main.*
-import java.time.Duration
-import com.google.android.material.snackbar.Snackbar.make as make1
 import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
