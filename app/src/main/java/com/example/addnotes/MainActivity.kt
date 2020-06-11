@@ -1,12 +1,20 @@
 package com.example.addnotes
 
+import android.app.ProgressDialog.show
 import android.os.Bundle
+import android.os.Message
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.content_main.*
+import java.time.Duration
+import com.google.android.material.snackbar.Snackbar.make as make1
 import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
@@ -124,6 +132,7 @@ class MainActivity : AppCompatActivity() {
             if(menuItem != null)
                 menuItem.icon = getDrawable(R.drawable.ic_baseline_block_24)
                 menuItem?.isEnabled = false
+                showToast("No more items in the list")
         } else {
             //The Button is disabled when the list gets to 0
             if (notePosition == 0) {
@@ -131,6 +140,7 @@ class MainActivity : AppCompatActivity() {
                 if (menuItem != null)
                     menuItem.icon = getDrawable(R.drawable.ic_baseline_block_24)
                 menuItem?.isEnabled = false
+                showToast("Please click next to see your other notes",Toast.LENGTH_SHORT)
             }
         }
         return super.onPrepareOptionsMenu(menu)
@@ -158,5 +168,10 @@ class MainActivity : AppCompatActivity() {
         //cast the course as CourseInfo to get the courseInfo reference
         note.course = spinnerCourse.selectedItem as CourseInfo
     }
-    
+    private fun showToast(message: String,toastDuration: Int = Toast.LENGTH_LONG) {
+        // Create and show the toast message
+        val toast = Toast.makeText(this, message, toastDuration)
+        toast.setGravity(Gravity.CENTER, 0, 0)
+        toast.show()
+    }
 }
