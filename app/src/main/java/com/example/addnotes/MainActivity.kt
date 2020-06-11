@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.content_main.*
 import kotlin.collections.indexOf as collectionsIndexOf
 
@@ -38,12 +39,16 @@ class MainActivity : AppCompatActivity() {
             displayNote()
         //if then we create a new Note
         else{
-            //create a new instance of the NoteInfo class and add it to DataManager notes collection
-            // and the set the position of the MainActivity to last index
-            DataManager.notes.add(NoteInfo())
-            notePosition = DataManager.notes.lastIndex
+            createNewNote()
         }
         
+    }
+    
+    private fun createNewNote() {
+        //create a new instance of the NoteInfo class and add it to DataManager notes collection
+        // and the set the position of the MainActivity to last index
+        DataManager.notes.add(NoteInfo())
+        notePosition = DataManager.notes.lastIndex
     }
     
     override fun onSaveInstanceState(outState: Bundle) {
@@ -153,4 +158,5 @@ class MainActivity : AppCompatActivity() {
         //cast the course as CourseInfo to get the courseInfo reference
         note.course = spinnerCourse.selectedItem as CourseInfo
     }
+    
 }
