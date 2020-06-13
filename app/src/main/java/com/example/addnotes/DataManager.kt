@@ -22,8 +22,28 @@ object DataManager {
         course = CourseInfo("java_core", "Java Fundamentals: The Core Platform")
         courses.set(course.courseId, course)
     }
+    //adding new note function following the test driven approach of development
+    fun addNote(course:CourseInfo,noteTitle:String,noteText:String):Int{
+        //the function above takes 3 Parameters and returns an INT values
+        // to add a note we need to get an instance of the NoteInfo Class
+        val note =NoteInfo(course,noteTitle,noteText)
+        //once the note is created add this to the list
+        notes.add(note)
+        // We will now return the last added course by accessing the lastIndex of the notes list
+        return notes.lastIndex
+    }
     
-    private fun initializeNotes() {
+    fun findNote(course: CourseInfo,noteTitle: String,noteText: String) : NoteInfo? {
+        //find notes to make consistency of test
+        for (note in notes)
+            if (course == note.course &&
+                    noteTitle == note.title &&
+                    noteText == note.text)
+                return note
+        return null
+    }
+    
+    fun initializeNotes() {
         
         var course = courses["android_intents"]!!
         var note = NoteInfo(course, "Dynamic intent resolution",
