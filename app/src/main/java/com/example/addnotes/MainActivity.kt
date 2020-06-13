@@ -14,7 +14,7 @@ import kotlin.collections.indexOf as collectionsIndexOf
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class MainActivity : AppCompatActivity() {
     //creating a property to log entries
-    private  val tag = "MainActivity"
+    private  val tag = this::class.simpleName
     //Property to find the position of Note
     private var notePosition = POSITION_NOT_SET
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         if (notePosition > DataManager.notes.lastIndex){
             showToast("Note not found",Toast.LENGTH_SHORT)
             //error log
-            Log.e(tag,"Invalide note position $notePosition, max valid position ${DataManager.notes.lastIndex}")
+            Log.e(tag,"Invalid note position $notePosition, max valid position ${DataManager.notes.lastIndex}")
         }
         
         // this function handles displaying notes state when
@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
         
         val coursePosition = DataManager.courses.values.collectionsIndexOf(note.course)
         spinnerCourse.setSelection(coursePosition)
-        
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
-
+    
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
