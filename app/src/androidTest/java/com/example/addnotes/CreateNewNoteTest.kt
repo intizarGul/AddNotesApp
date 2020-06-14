@@ -11,6 +11,7 @@ import org.hamcrest.CoreMatchers.*
 import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 @RunWith(AndroidJUnit4::class)
+
 class CreateNewNoteTest{
 	//noteListActivity test
 	//we launch the test with noteListActivity
