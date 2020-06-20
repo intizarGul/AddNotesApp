@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_note_list.*
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 
 class NoteListActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +19,9 @@ class NoteListActivity : AppCompatActivity() {
 			startActivity(intentActivity)
 		}
 		
-		
+		//associate layout manager with RecyclerView
+		ListItems.layoutManager = LinearLayoutManager(this)
+		ListItems.adapter = NoteRecyclerAdapter(this,DataManager.notes)
 		
 		
 	}
