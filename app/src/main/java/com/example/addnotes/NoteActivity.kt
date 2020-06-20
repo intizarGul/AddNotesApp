@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.content_main.*
 import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
-class MainActivity : AppCompatActivity() {
-    //creating a property to log entries
+class NoteActivity : AppCompatActivity() {
+    //creating a property to log entries by class name
     private  val tag = this::class.simpleName
     //Property to find the position of Note
     private var notePosition = POSITION_NOT_SET
