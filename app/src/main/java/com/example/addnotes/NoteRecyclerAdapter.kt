@@ -1,14 +1,11 @@
 package com.example.addnotes
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.res.ColorStateListInflaterCompat.inflate
-import androidx.core.content.res.ComplexColorCompat.inflate
-import androidx.core.graphics.drawable.DrawableCompat.inflate
 import androidx.recyclerview.widget.RecyclerView
 
 class NoteRecyclerAdapter(private val context: Context,private val notes: List<NoteInfo>):
@@ -18,12 +15,22 @@ class NoteRecyclerAdapter(private val context: Context,private val notes: List<N
 	RecyclerView.Adapter<NoteRecyclerAdapter.ViewHolder>(){
 	//add a property to inflate layout
 	private val layoutInflater = LayoutInflater.from(context)
+	
 	//inside the RecyclerAdapter Class we need a class to hold our view
-	class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		//populate the data fields to do so we need to access the fields from the recycler view
 		val textCourse = itemView?.findViewById<TextView?>(R.id.textCourse)
 		val textTitle = itemView?.findViewById<TextView?>(R.id.textTitle)
-	
+		//set note position
+		var notePosition = 0
+		//display the noteActivity when a note is selected
+		init {
+			itemView?.setOnClickListener {
+				val intent = Intent(context,NoteActivity::class.java)
+				intent.putExtra(NOTE_POSITION,notePosition)
+				context.startActivity(intent)
+			}
+		}
 	
 	}
 	
@@ -47,5 +54,6 @@ class NoteRecyclerAdapter(private val context: Context,private val notes: List<N
 		val note = notes[position]
 		holder.textCourse?.text = note.course?.title
 		holder.textTitle?.text = note.title
+		holder.notePosition = position
 	}
 }

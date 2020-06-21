@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.content_note.*
 import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
@@ -19,7 +19,7 @@ class NoteActivity : AppCompatActivity() {
     private var notePosition = POSITION_NOT_SET
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_note)
         setSupportActionBar(findViewById(R.id.toolbar))
         
         //we are now using the adaptor class to populate the spinner with the information

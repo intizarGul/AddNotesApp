@@ -26,11 +26,9 @@ class NoteListActivity : AppCompatActivity() {
 		
 	}
 	
-	//When a new note is added to the arrayAdapter the size of the array will change this will result in app crashing
-	//the new note is not showing yet to show the note we need to override the onResume method
-	//this means when the NoteListActivity is in foreground show the new items added
 	override fun onResume() {
 		super.onResume()
-		
+		//notify the Adapter to display the note changes
+		ListItems.adapter?.notifyDataSetChanged()
 	}
 }
