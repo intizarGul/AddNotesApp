@@ -21,11 +21,11 @@
     <string name="textCourse">TextView</string>
     <string name="textTitle">TextView</string>
     <string name="add_note">Add Note</string>
-    <string name="title_activity_items">ItemsActivity</string>
+    <string name="title_activity_items">com.example.ItemsActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">My Notes Application</string>
+    <string name="nav_header_subtitle">Created by Intizar</string>
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="menu_home">Home</string>
