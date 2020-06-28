@@ -27,12 +27,13 @@
     <string name="nav_header_title">My Notes Application</string>
     <string name="nav_header_subtitle">Created by Intizar</string>
     <string name="nav_header_desc">Navigation header</string>
-
+    <string name="courseDetails">Course Details</string>
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_gallery">Notes</string>
+    <string name="menu_slideshow">Courses</string>
     <string name="title_activity_items_list">ItemsListActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_note_items">NoteItemsActivity</string>
     <string name="title_activity_all_notes">AllNotesActivity</string>
+    <string name="textview" />
 </resources>

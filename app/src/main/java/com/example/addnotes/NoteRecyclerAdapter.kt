@@ -19,7 +19,7 @@ class NoteRecyclerAdapter(private val context: Context,private val notes: List<N
 	//inside the RecyclerAdapter Class we need a class to hold our view
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		//populate the data fields to do so we need to access the fields from the recycler view
-		val textCourse = itemView?.findViewById<TextView?>(R.id.textCourse)
+		val textCourse = itemView?.findViewById<TextView?>(R.id.courseDetails)
 		val textTitle = itemView?.findViewById<TextView?>(R.id.textTitle)
 		//set note position
 		var notePosition = 0
