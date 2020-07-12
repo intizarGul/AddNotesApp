@@ -18,9 +18,10 @@ import java.lang.System.out
 
 @Suppress("DEPRECATION")
 class NotesFragment : Fragment() {
-	companion object {
+	
+	/*companion object {
 		fun newInstance() = NotesFragment()
-	}
+	}*/
 	
 	private var noteListState: Parcelable? = null
 	private lateinit var notesViewModel: NotesViewModel

@@ -17,9 +17,9 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 	
-	companion object {
-		fun newInstance() = HomeFragment()
-	}
+	/*companion object {
+		//fun newInstance() = HomeFragment()
+	}*/
 	private var itemsListState: Parcelable? = null
 	
 	private val noteRecyclerAdapter by lazy {

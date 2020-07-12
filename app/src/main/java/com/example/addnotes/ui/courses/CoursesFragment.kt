@@ -27,9 +27,10 @@ import kotlinx.android.synthetic.main.item_course_list.*
 @Suppress("DEPRECATION")
 class CoursesFragment : Fragment(R.layout.fragment_courses) {
 	
-	companion object {
-		fun newInstance () = CoursesFragment()
-	}
+	/*companion object {
+		//fun newInstance () = CoursesFragment()
+	}*/
+	
 	private var courseListState: Parcelable? = null
 	private val courseLayoutManager by lazy {
 		GridLayoutManager(context,2)
@@ -49,7 +50,7 @@ class CoursesFragment : Fragment(R.layout.fragment_courses) {
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)
 		courseListState = courseLayoutManager.onSaveInstanceState()
-		outState.putParcelable("LIST_STATE_KEY", courseListState)
+		outState?.putParcelable("LIST_STATE_KEY", courseListState)
 	}
 	
 	override fun onViewStateRestored(savedInstanceState: Bundle?) {
