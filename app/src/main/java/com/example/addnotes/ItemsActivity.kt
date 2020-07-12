@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_items.*
 import kotlinx.android.synthetic.main.fragment_home.listItems
+import kotlinx.android.synthetic.main.fragment_notes.*
 
 class ItemsActivity : AppCompatActivity() {
 	private lateinit var appBarConfiguration: AppBarConfiguration
@@ -49,7 +50,8 @@ class ItemsActivity : AppCompatActivity() {
 	
 	override fun onResume() {
 		super.onResume()
-		listItems.adapter?.notifyDataSetChanged()
+		listItems?.adapter?.notifyDataSetChanged()
+		listNotes?.adapter?.notifyDataSetChanged()
 	}
 	
 	//Back Button Pressed close the drawer if open

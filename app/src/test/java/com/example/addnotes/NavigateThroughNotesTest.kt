@@ -1,18 +1,16 @@
 package com.example.addnotes
 
-import androidx.test.espresso.Espresso.*
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.junit.Assert.*
+import androidx.test.rule.ActivityTestRule
+import org.hamcrest.CoreMatchers.*
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.hamcrest.CoreMatchers.*
-import androidx.test.rule.ActivityTestRule
-import org.junit.Rule
-import androidx.test.espresso.Espresso.pressBack as espressoPressBack
 
 @RunWith(AndroidJUnit4::class)
 class NavigateThroughNotesTest{

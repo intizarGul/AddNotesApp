@@ -31,6 +31,9 @@
             android:name=".NoteActivity"
             android:label="Edit Notes"
             android:theme="@style/AppTheme.NoActionBar" />
+        <uses-library android:name="android.test.runner"
+            android:required="false"
+            tools:ignore="WrongManifestParent" />
     </application>
 
 </manifest>

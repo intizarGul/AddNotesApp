@@ -21,6 +21,12 @@ object DataManager {
         
         course = CourseInfo("java_core", "Java Fundamentals: The Core Platform")
         courses.set(course.courseId, course)
+        
+        course = CourseInfo("kotlin_core", "Kotlin Fundamentals: The Core Platform")
+        courses.set(course.courseId, course)
+    
+        course = CourseInfo(title = "Kotlin Fundamentals: The Kotlin Language", courseId = "kotlin_lang")
+        courses.set(course.courseId, course)
     }
     //adding new note function following the test driven approach of development
     fun addNote(course:CourseInfo,noteTitle:String,noteText:String):Int{
