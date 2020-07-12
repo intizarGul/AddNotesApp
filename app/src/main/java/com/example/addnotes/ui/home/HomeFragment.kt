@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)
 		itemsListState = listItems?.layoutManager?.onSaveInstanceState()
-		outState?.putParcelable("LIST_STATE_KEY", itemsListState)
+		outState.putParcelable("LIST_STATE_KEY", itemsListState)
 	}
 	override fun onViewStateRestored(savedInstanceState: Bundle?) {
 		super.onViewStateRestored(savedInstanceState)

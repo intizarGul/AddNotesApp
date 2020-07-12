@@ -14,7 +14,6 @@ import com.example.addnotes.DataManager
 import com.example.addnotes.NoteRecyclerAdapter
 import com.example.addnotes.R
 import kotlinx.android.synthetic.main.fragment_notes.*
-import java.lang.System.out
 
 @Suppress("DEPRECATION")
 class NotesFragment : Fragment() {
