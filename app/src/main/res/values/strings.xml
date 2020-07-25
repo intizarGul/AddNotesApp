@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Add Notes</string>
+    <string name="app_name">Notes Collection</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -36,4 +36,9 @@
     <string name="title_activity_note_items">NoteItemsActivity</string>
     <string name="title_activity_all_notes">AllNotesActivity</string>
     <string name="textview" />
+    <string name="note_activity_label">Notes Collection</string>
+    <string name="nav_how_many_message_format">Notes: %1$d | Courses: %2$d</string>
+    <string name="how_many">How Many</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

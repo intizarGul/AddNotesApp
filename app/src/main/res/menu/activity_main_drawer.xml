@@ -16,5 +16,9 @@
             android:id="@+id/nav_notes"
             android:icon="@drawable/ic_baseline_chat_bubble_24"
             android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_how_many"
+            android:icon="@drawable/ic_baseline_chat_bubble_24"
+            android:title="@string/how_many" />
     </group>
 </menu>

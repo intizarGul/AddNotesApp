@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ItemsActivity"
-            android:label="Note Collection"
+            android:label="@string/note_activity_label"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="Instantiatable,MissingClass">
             <intent-filter>
