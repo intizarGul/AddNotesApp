@@ -21,7 +21,9 @@ class CoursesFragment : Fragment(R.layout.fragment_courses) {
 	
 	private var courseListState: Parcelable? = null
 	private val courseLayoutManager by lazy {
-		GridLayoutManager(context,2)
+		//Create an instance of the GridLayoutManger
+		//get the layout grid from resources values this will adapt to different displays
+		GridLayoutManager(context,resources.getInteger(R.integer.course_grid_span))
 	}
 	private val courseRecyclerAdapter by lazy {
 		context?.let { CourseRecyclerAdapter(it,DataManager.courses.values.toList()) }

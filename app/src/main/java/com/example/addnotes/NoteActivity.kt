@@ -17,6 +17,7 @@ class NoteActivity : AppCompatActivity() {
     private  val tag = this::class.simpleName
     //Property to find the position of Note
     private var notePosition = POSITION_NOT_SET
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note)
