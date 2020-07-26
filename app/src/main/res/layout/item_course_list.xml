@@ -27,7 +27,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/courseDetails"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/BrandedText.CourseName"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/course_name_size"
                 android:textStyle="bold"

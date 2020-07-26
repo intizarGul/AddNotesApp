@@ -1,44 +1,27 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Notes Collection</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings" translatable="false">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="change_title">Note title</string>
     <string name="change_information">Note Text</string>
-    <string name="title_activity_note_list">NoteListActivity</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
-    <string name="hello_world">Hello Square World!</string>
-    <string name="title_activity_not_list">NotActivityList</string>
-    <string name="textCourse">TextView</string>
-    <string name="textTitle">TextView</string>
-    <string name="add_note">Add Note</string>
-    <string name="title_activity_items">com.example.ItemsActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">My Notes Application</string>
-    <string name="nav_header_subtitle">Created by Intizar</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="courseDetails">Course Details</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Notes</string>
-    <string name="menu_slideshow">Courses</string>
-    <string name="title_activity_items_list">ItemsListActivity</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_note_items">NoteItemsActivity</string>
-    <string name="title_activity_all_notes">AllNotesActivity</string>
-    <string name="textview" />
-    <string name="note_activity_label">Notes Collection</string>
-    <string name="nav_how_many_message_format">Notes: %1$d | Courses: %2$d</string>
-    <string name="how_many">How Many</string>
+    <string name="textCourse" tools:ignore="MissingTranslation">TextView</string>
+    <string name="textTitle" tools:ignore="MissingTranslation">TextView</string>
+    <string name="add_note" tools:ignore="MissingTranslation">Add Note</string>
+    <string name="nav_header_title" tools:ignore="MissingTranslation">My Notes Application</string>
+    <string name="nav_header_subtitle" tools:ignore="MissingTranslation">Created by Intizar</string>
+    <string name="nav_header_desc" tools:ignore="MissingTranslation">Navigation header</string>
+    <string name="courseDetails" tools:ignore="MissingTranslation">Course Details</string>
+    <string name="menu_home" tools:ignore="MissingTranslation">Home</string>
+    <string name="menu_gallery" tools:ignore="MissingTranslation">Notes</string>
+    <string name="menu_slideshow" tools:ignore="MissingTranslation">Courses</string>
+    <string name="note_activity_label" tools:ignore="MissingTranslation">Notes Collection</string>
+    <string name="how_many" tools:ignore="MissingTranslation">How Many</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

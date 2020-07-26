@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notes Collection</string>
+    <string name="change_information">نوټ متن</string>
+    <string name="change_title">سرليک نوټ</string>
+    <string name="next">بل</string>
+    <string name="previous">پخوانيو</string>
+</resources>
