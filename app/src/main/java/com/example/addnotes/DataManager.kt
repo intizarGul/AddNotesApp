@@ -1,15 +1,67 @@
 package com.example.addnotes
 
+import com.example.addnotes.NotesCollectionDBContract.CourseInfoEntry
+
 object DataManager {
-    val courses = HashMap<String, CourseInfo>()
+    fun fetchAllEmployees(databaseHelper: NotesCollectionDatabaseHelper) : ArrayList<CourseInfo> {
+        
+        //create an empty list of employees
+        val employees = ArrayList<CourseInfo>()
+        
+        
+        //open the connection to the database
+        val db = databaseHelper.readableDatabase
+        
+        //Array of the columns
+        val columns = arrayOf(
+            CourseInfoEntry.COLUMN_ID,
+            CourseInfoEntry.COLUMN_COURSE_ID,
+            CourseInfoEntry.COLUMN_TITLE)
+        
+        
+        
+        //Query the columns and assign the query to a var
+        val cursor =  db.query(CourseInfoEntry.TABLE_NAME,
+            columns,null,null,null,null,null)
+        
+        
+        //we begin the cursor by getting the column position
+        val idPos = cursor.getColumnIndex(CourseInfoEntry.COLUMN_ID)
+        val cIdPos = cursor.getColumnIndex(CourseInfoEntry.COLUMN_COURSE_ID)
+        val cTitlePos = cursor.getColumnIndex(CourseInfoEntry.COLUMN_TITLE)
+        
+        //cursor by default is at position -1 move this to first position which is 0
+        // keep doing this until we reach the end of the results by using a while loop
+        
+        while (cursor.moveToNext()) {
+            
+            // we have the position
+            val id = cursor.getString(idPos)
+            val courseId = cursor.getString(cIdPos)
+            val courseTitle = cursor.getString(cTitlePos)
+            //val surgeon = cursor.getInt(surgeonPos)
+            
+            //add this to the employee array
+            employees.add(CourseInfo(id,courseId,courseTitle))
+        }
+        
+        //cursor closed here to release the resources
+        cursor.close()
+        //return the employee array list
+        return employees
+        
+    }
+    
+    
+    //val courses = HashMap<String, CourseInfo>()
     val notes = ArrayList<NoteInfo>()
     
     init {
-        initializeCourses()
-        initializeNotes()
+        //initializeCourses()
+        //initializeNotes()
     }
     
-    private fun initializeCourses() {
+    /*private fun initializeCourses() {
         var course = CourseInfo("android_intents", "Android Programming with Intents")
         courses.set(course.courseId, course)
         
@@ -27,7 +79,7 @@ object DataManager {
     
         course = CourseInfo(title = "Kotlin Fundamentals: The Kotlin Language", courseId = "kotlin_lang")
         courses.set(course.courseId, course)
-    }
+    }*/
     //adding new note function following the test driven approach of development
     fun addNote(course:CourseInfo,noteTitle:String,noteText:String):Int{
         //the function above takes 3 Parameters and returns an INT values
@@ -49,7 +101,7 @@ object DataManager {
         return null
     }
     
-    fun initializeNotes() {
+    /*fun initializeNotes() {
         
         var course = courses["android_intents"]!!
         var note = NoteInfo(course, "Dynamic intent resolution",
@@ -82,5 +134,5 @@ object DataManager {
         note = NoteInfo(course, "Serialization",
             "Remember to include SerialVersionUID to assure version compatibility")
         notes.add(note)
-    }
+    }*/
 }

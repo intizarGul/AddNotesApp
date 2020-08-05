@@ -13,6 +13,7 @@ import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class NoteActivity : AppCompatActivity() {
+    lateinit var databaseHelper: NotesCollectionDatabaseHelper
     //creating a property to log entries by class name
     private  val tag = this::class.simpleName
     //Property to find the position of Note
@@ -22,12 +23,14 @@ class NoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note)
         setSupportActionBar(findViewById(R.id.toolbar))
-        
+    
+    
+        databaseHelper = NotesCollectionDatabaseHelper(this)
         //we are now using the adaptor class to populate the spinner with the information
         // from the DataManager Class
         val adapterCourses = ArrayAdapter<CourseInfo>(this,
             android.R.layout.simple_spinner_item,
-            DataManager.courses.values.toList())
+            DataManager.fetchAllEmployees(databaseHelper).toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     
         spinnerCourse.adapter = adapterCourses
@@ -78,8 +81,8 @@ class NoteActivity : AppCompatActivity() {
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
         
-        val coursePosition = DataManager.courses.values.collectionsIndexOf(note.course)
-        spinnerCourse.setSelection(coursePosition)
+        //val coursePosition = DataManager.courses.values.collectionsIndexOf(note.course)
+        //spinnerCourse.setSelection(coursePosition)
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
