@@ -1,6 +1,6 @@
 package com.example.addnotes
 
-data class CourseInfo (val Id:String, val courseId: String, val title: String) {
+data class CourseInfo (val courseId: String, val title: String) {
 	override fun toString(): String {
 		return title
 	}

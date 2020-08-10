@@ -2,6 +2,7 @@
   <dictionary name="intiz">
     <words>
       <w>addnotes</w>
+      <w>aubi</w>
       <w>changeinfo</w>
       <w>datamanager</w>
       <w>intialize</w>
@@ -10,6 +11,7 @@
       <w>snackbar</w>
       <w>syntesize</w>
       <w>textview</w>
+      <w>wali</w>
     </words>
   </dictionary>
 </component>

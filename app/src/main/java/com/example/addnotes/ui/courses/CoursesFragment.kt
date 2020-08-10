@@ -30,7 +30,7 @@ class CoursesFragment : Fragment(R.layout.fragment_courses) {
 	}
 	
 	private val courseRecyclerAdapter by lazy {
-		context?.let { CourseRecyclerAdapter(it,DataManager.fetchAllEmployees(databaseHelper!!).toList()) }
+		context?.let { CourseRecyclerAdapter(it,DataManager.fetchAllCourses(databaseHelper!!).toList()) }
 	}
 	
 	private lateinit var coursesViewModel: CoursesViewModel
@@ -42,7 +42,7 @@ class CoursesFragment : Fragment(R.layout.fragment_courses) {
 		
 		activity.let { coursesViewModel = ViewModelProviders.of(it!!).get(CoursesViewModel::class.java) }
 		listCourses?.layoutManager = courseLayoutManager
-		listCourses?.adapter = courseRecyclerAdapter
+		//listCourses?.adapter = courseRecyclerAdapter
 	}
 	override fun onSaveInstanceState(outState: Bundle) {
 		super.onSaveInstanceState(outState)

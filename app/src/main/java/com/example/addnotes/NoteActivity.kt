@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.content_note.*
-import kotlin.collections.indexOf as collectionsIndexOf
 
 @Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class NoteActivity : AppCompatActivity() {
@@ -29,8 +28,7 @@ class NoteActivity : AppCompatActivity() {
         //we are now using the adaptor class to populate the spinner with the information
         // from the DataManager Class
         val adapterCourses = ArrayAdapter<CourseInfo>(this,
-            android.R.layout.simple_spinner_item,
-            DataManager.fetchAllEmployees(databaseHelper).toList())
+            android.R.layout.simple_spinner_item,DataManager.fetchAllCourses(databaseHelper).toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     
         spinnerCourse.adapter = adapterCourses
